@@ -1,0 +1,12 @@
+name: Download and generate files
+on: [workflow_dispatch]
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - run: sudo add-apt-repository ppa:ubuntugis/ppa && sudo apt install gdal
+      - run: (curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash -) && sudo apt-get install -y nodejs
+      - run: npm install
+      - run: ./process
