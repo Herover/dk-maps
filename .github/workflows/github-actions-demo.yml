@@ -9,4 +9,4 @@ jobs:
       - run: sudo add-apt-repository ppa:ubuntugis/ppa && sudo apt-get install gdal-bin
       - run: (curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash -) && sudo apt-get install -y nodejs
       - run: npm install
-      - run: chmod +x ./run.sh && ./run.sh
+      - run: chmod +x ./run.sh && ./run.sh "$WFS_URL"
