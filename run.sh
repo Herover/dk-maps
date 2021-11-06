@@ -11,6 +11,8 @@ SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 tmpDir="$SCRIPT_DIR/tmp/"
 outDir="$SCRIPT_DIR/out/"
 
+(cd SCRIPT_DIR; npm install)
+
 # Clean directories
 #rm $tmpDir*
 rm -rf $outDir
