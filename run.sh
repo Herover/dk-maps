@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+folder=$1
 url=$2
 
 projection="d3.geoMercator().center([13.5, 56.2]).scale(4900)"
@@ -15,7 +16,7 @@ outDir="$SCRIPT_DIR/out/"
 
 # Clean directories
 #rm $tmpDir*
-rm -rf $outDir
+rm -rf $outDir$folder
 
 if [ ! -f "${outDir}" ]
 then
@@ -27,13 +28,13 @@ then
 fi
 
 # Download GML from WFS
-if [ ! -f "${tmpDir}dagi.gml" ]
+if [ ! -f "${tmpDir}${folder}.gml" ]
 then
-    ogr2ogr -f GML "${tmpDir}dagi.gml" "WFS:$url"
+    ogr2ogr -f GML "${tmpDir}${folder}.gml" "WFS:$url"
 fi
 
-cp $tmpDir"dagi.gml" ${outDir}
-cp $tmpDir"dagi.xsd" ${outDir}
+cp $tmpDir"${folder}.gml" ${outDir}
+cp $tmpDir"${folder}.xsd" ${outDir}
 
 function process () {
     key=${1,}
@@ -45,16 +46,16 @@ function process () {
     npx geo2svg -w 650 -h 500 < "${tmpDir}${folder}/${key}/${key}.json" > "${outDir}${folder}/${key}/${key}.svg"
 }
 
-process "Afstemningsomraade" $1
-process "Kommuneinddeling" $1
-process "Landsdel" $1
-process "Menighedsraadsafstemningsomraade" $1
-process "Opstillingskreds" $1
-process "Politikreds" $1
-process "Postnummerinddeling" $1
-process "Regionsinddeling" $1
-process "Retskreds" $1
-process "Samlepostnummer" $1
-process "Sogneinddeling" $1
-process "Storkreds" $1
-process "SupplerendeBynavn" $1
+process "Afstemningsomraade" $folder
+process "Kommuneinddeling" $folder
+process "Landsdel" $folder
+process "Menighedsraadsafstemningsomraade" $folder
+process "Opstillingskreds" $folder
+process "Politikreds" $folder
+process "Postnummerinddeling" $folder
+process "Regionsinddeling" $folder
+process "Retskreds" $folder
+process "Samlepostnummer" $folder
+process "Sogneinddeling" $folder
+process "Storkreds" $folder
+process "SupplerendeBynavn" $folder
