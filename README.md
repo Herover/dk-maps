@@ -1,3 +1,8 @@
+This repository contains data from Styrelsen for Dataforsyning og
+Effektivisering. If you use data from here you must follow their
+[terms](https://dataforsyningen.dk/asset/PDF/rettigheder_vilkaar/Vilk%C3%A5r%20for%20brug%20af%20frie%20geografiske%20data.pdf)
+and attribute them.
+
 # About
 A script for downloading the administrative boundaries of Denmark in a
 automatic way. The project was made because the WFS Dataforsyningen and
@@ -6,8 +11,8 @@ Datafordeleren was hard to get working correctly in QGIS.
 The script will produce a GML file with all layers, and GeoJSON and SVG files
 for each layer.
 
-The scripts are specifically for DAGI ([https://dataforsyningen.dk/data/3559](
-Danmark Administrative Geografiske Inddeling)) but it should be possible to
+The scripts are specifically for DAGI ([Danmarks Administrative Geografiske Inddeling](
+https://dataforsyningen.dk/data/3559)) but it should be possible to
 adjust for other datasets.
 
 # Use
@@ -22,4 +27,6 @@ The `NAMESPACES` parameter is required since ogr2ogr and Dataforsyningens WFS
 server seems to disagree on how to use namespaces.
 
 # License
-MIT
+Code: MIT
+
+Data: https://dataforsyningen.dk/asset/PDF/rettigheder_vilkaar/Vilk%C3%A5r%20for%20brug%20af%20frie%20geografiske%20data.pdf
