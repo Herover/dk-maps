@@ -39,9 +39,9 @@ function process () {
     key=${1,}
     mkdir "${outDir}${key}"
     mkdir "${tmpDir}${key}"
-    ogr2ogr -f GeoJSON -lco RFC7946=YES -t_srs EPSG:25832 -s_srs EPSG:25832 "${tmpDir}${key}/dagi-${key}.json" "${tmpDir}dagi.gml" "dagi_${key^}"
-    npx geoproject "$projection" < "${tmpDir}${key}/dagi-${key}.json" > "${outDir}${key}/dagi-${key}.json" && \
-    npx geo2svg -w 650 -h 500 < "${outDir}${key}/dagi-${key}.json" > "${outDir}${key}/dagi-${key}.svg"
+    ogr2ogr -f GeoJSON -lco RFC7946=YES -t_srs EPSG:4326 -s_srs EPSG:25832 "${outDir}${key}/dagi-${key}.json" "${tmpDir}dagi.gml" "dagi_${key^}"
+    npx geoproject "$projection" < "${outDir}${key}/dagi-${key}.json" > "${tmpDir}${key}/dagi-${key}.json" && \
+    npx geo2svg -w 650 -h 500 < "${tmpDir}${key}/dagi-${key}.json" > "${outDir}${key}/dagi-${key}.svg"
 }
 
 process "Afstemningsomraade"
