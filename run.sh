@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-url=$1
+url=$2
 
 projection="d3.geoMercator().center([13.5, 56.2]).scale(4900)"
 
@@ -37,23 +37,24 @@ cp $tmpDir"dagi.xsd" ${outDir}
 
 function process () {
     key=${1,}
-    mkdir "${outDir}${key}"
-    mkdir "${tmpDir}${key}"
-    ogr2ogr -f GeoJSON -lco RFC7946=YES -t_srs EPSG:4326 -s_srs EPSG:25832 "${outDir}${key}/dagi-${key}.json" "${tmpDir}dagi.gml" "dagi_${key^}"
-    npx geoproject "$projection" < "${outDir}${key}/dagi-${key}.json" > "${tmpDir}${key}/dagi-${key}.json" && \
-    npx geo2svg -w 650 -h 500 < "${tmpDir}${key}/dagi-${key}.json" > "${outDir}${key}/dagi-${key}.svg"
+    folder=${2}
+    mkdir -p "${outDir}${folder}/${key}"
+    mkdir -p "${tmpDir}${folder}/${key}"
+    ogr2ogr -f GeoJSON -lco RFC7946=YES -t_srs EPSG:4326 -s_srs EPSG:25832 "${outDir}${folder}/${key}/${key}.json" "${tmpDir}dagi.gml" "dagi_${key^}"
+    npx geoproject "$projection" < "${outDir}${folder}/${key}/${key}.json" > "${tmpDir}${folder}/${key}/${key}.json" && \
+    npx geo2svg -w 650 -h 500 < "${tmpDir}${folder}/${key}/${key}.json" > "${outDir}${folder}/${key}/${key}.svg"
 }
 
-process "Afstemningsomraade"
-process "Kommuneinddeling"
-process "Landsdel"
-process "Menighedsraadsafstemningsomraade"
-process "Opstillingskreds"
-process "Politikreds"
-process "Postnummerinddeling"
-process "Regionsinddeling"
-process "Retskreds"
-process "Samlepostnummer"
-process "Sogneinddeling"
-process "Storkreds"
-process "SupplerendeBynavn"
+process "Afstemningsomraade" $1
+process "Kommuneinddeling" $1
+process "Landsdel" $1
+process "Menighedsraadsafstemningsomraade" $1
+process "Opstillingskreds" $1
+process "Politikreds" $1
+process "Postnummerinddeling" $1
+process "Regionsinddeling" $1
+process "Retskreds" $1
+process "Samlepostnummer" $1
+process "Sogneinddeling" $1
+process "Storkreds" $1
+process "SupplerendeBynavn" $1
