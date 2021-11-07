@@ -8,6 +8,10 @@ A script for downloading the administrative boundaries of Denmark in a
 automatic way. The project was made because the WFS Dataforsyningen and
 Datafordeleren was hard to get working correctly in QGIS.
 
+If you just want the DAGI files you can review the 1:2 000 000 files directly
+in this [repo](https://github.com/Herover/dk-maps/tree/main/out/dagi2000) or
+download more variants on the [release page](https://github.com/Herover/dk-maps/releases).
+
 The script will produce a GML file with all layers, and GeoJSON and SVG files
 for each layer.
 
